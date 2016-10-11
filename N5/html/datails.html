@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>详情</title>
+		<link rel="stylesheet" href="../css/reset.css" />
+		<link rel="stylesheet" href="../css/common.css" />
+		<link rel="stylesheet" href="../css/datails.css" />
+		<link rel="stylesheet" href="../myplug/jquery.xzoom.css" />
+		<script type="text/javascript" src="../js/jquery-1.12.0.js"></script>
+		<script type="text/javascript" src="../myplug/jquery.xzoom.js"></script>
+		<script type="text/javascript" src="../js/common.js" ></script>
+		<script type="text/javascript" src="../js/cookie.js" ></script>
+	</head>
+
+	<body>
+		<!--头部-->
+		<div id="_head"></div>
+		<script>
+			$("#_head").load("head.html",function(){
+				getHeadname();
+			});
+		</script>
+		<!--内容-->
+		<div class="content">
+			<p class="current">
+				<a href="#" style="margin-left:0px;" name="cur" id="cur">首页</a>
+				<span class="prodNavTxt">&gt;</span>
+				<a href="#">美容工具</a>
+				<span class="prodNavTxt">&gt;</span>
+				<a href="#">Estee Lauder 雅诗兰黛</a>
+				<span class="prodNavTxt">&gt;</span>
+				<span class="cpname">Estee lauder 雅诗兰黛土豪金镂空时尚拎包(200210) </span>
+			</p>
+			<div class="part-1">
+				<ul id="picIdxBox">
+					<!--<li  class="pic_li pic_on">
+						<img src="../img/bag_small1.jpg" />
+					</li>-->
+				</ul>
+				<div id="picbox" class="fdj">
+					<!--<img src="../img/bag_big1.jpg"  data-big="../img/zoom1.jpg">-->
+				</div>
+			</div>
+			<!--商品信息-->
+			<div class="list-Info">
+				<!--<h3>Estee lauder 雅诗兰黛土豪金镂空时尚拎包(200210) </h3>
+				<div class="main_info">
+					商品编号:<span>31817</span><br />
+					No5   价:<span class="aa">￥30.00</span> 市场价:<span>￥80.00</span> 折扣:<span>3.8折</span><br />
+				</div>
+				<div class="det_info">
+					所属品牌:<span>Estee Lauder 雅诗兰黛 </span>&rarr;<span>其他护肤系列</span><br />
+					所属分类:<span>美容工具</span>&rarr;<span>家居工具</span>&rarr;<span>购物袋/包</span><br />
+					运费声明:<p>购物满80元免费快递</p><span>查看运费详情</span><br />
+					消费保障:<b><img src="../img/ico01.jpg"/>品质承诺</b>
+					<b><img src="../img/ico02.jpg"/>货到付款</b>
+					<b><img src="../img/ico03.jpg"/>不满意退货</b>
+					<b><img src="../img/ico04.jpg"/>可靠包装</b>
+				</div>-->
+				<!--加入购物车-->
+				<!--<div class="addcar">
+					<div class="buycount">
+						<p>我要买:</p>
+						<img src="../img/reduce.jpg"  />
+						<input type="text" id="nums" value="1" maxlength="2" />
+						<img src="../img/add.jpg" />
+					</div>
+					<div class="addtocar"></div>
+					<div class="collect"></div>
+				</div>-->
+				
+			</div>
+		</div>
+		<div class="clear"></div>
+		<script>
+			var $picIdxBox = $("#picIdxBox");
+			var $picbox = $("#picbox");
+			var $listInfo = $(".list-Info");
+			var $maininfo = $("<div/>").addClass("main_info");
+			var $detinfo = $("<div/>").addClass("det_info");
+			var $addcar = $("<div/>").addClass("addcar");
+			
+			//加载
+			$.ajax({
+				url: "../json/datails.json",
+				success: function(res) {
+					$.each(res, function(idx, ele) {
+						$.each(ele.smallIMG, function(idx, ele) {
+							//生成li小图
+							var $li = $("<li/>").addClass("pic_li").html("<img src=" + ele.url + " />").appendTo($picIdxBox);
+							if(ele.pic_on) {
+								$li.addClass(ele.pic_on);
+							}
+						});
+						//生成放大镜小图
+						var $img = $("<img/>").attr({
+							"src": ele.bigIMG,
+							"data-big": ele.data_big,
+							"id" : "setgoods"
+						}).appendTo($picbox);
+
+						//加载商品信息
+						$("<h3/>").addClass("getTitle").html(ele.title).appendTo($listInfo);
+						$maininfo.html("商品编号:<span>"+ele.itemcode+"</span><br />No5   价:<span class=aa>"+ele.no5+"</span> 市场价:<span>"+ele.marketprice+"</span> 折扣:<span>"+ele.discount+"</span><br />").appendTo($listInfo);
+						$detinfo.html("所属品牌:<span>"+ele.brand1+"</span>&rarr;<span>"+ele.brand2+"</span><br />所属分类:<span>"+ele.classify1+"</span>&rarr;<span>"+ele.classify2+"</span>&rarr;<span>"+ele.classify3+"</span><br />运费声明:<p>购物满80元免费快递</p><span>查看运费详情</span><br />消费保障:<b><img src='../img/ico01.jpg'/>品质承诺</b><b><img src='../img/ico02.jpg'/>货到付款</b><b><img src='../img/ico03.jpg'/>不满意退货</b><b><img src='../img/ico04.jpg'/>可靠包装</b>").appendTo($listInfo);
+						$addcar.html("<div class='buycount'><p>我要买:</p><img src='../img/reduce.jpg' id='reduce' /><input type='text' id='nums' value='1' maxlength='2' /><img src='../img/add.jpg' id='add' /></div><div class='addtocar'></div><div class='collect'></div>").appendTo($listInfo);
+					});
+					//放大镜插件
+					$(".fdj").xzoom();
+					
+					
+					var num = $("#nums").val();
+					var sum = 0;
+					$listInfo.on("keyup","#nums",function(){
+						//输入之后重新获取数量
+						num = $("#nums").val();
+					});
+					
+					//点击改变数量
+					//增加
+					$listInfo.on("click","#add",function(){
+						num++;
+						$("#nums").val(num);
+					});
+					//减少
+					$listInfo.on("click","#reduce",function(){
+						if(num == 1){
+							num == 1;
+						}else{
+							num--;
+						}
+						$("#nums").val(num);
+					});
+					
+					
+					
+					//点击加入购物车
+					var $setgoods = $("#setgoods")
+					$listInfo.on("click",".addtocar",function(){
+						var $pos = $setgoods.offset();			//获取图片的位置
+						var $imgurl = $setgoods.attr("src");	//获取图片的路径
+						var $sizeImg = $setgoods.width();		//获取图片的大小
+						
+						//购物车里数量增加
+						sum += parseInt(num);
+					
+						//创建图片在原来的位置
+						var $copyImg = $("<img/>").attr({src : $imgurl}).css({
+							position:"absolute",
+							top : $pos.top,
+							left : $pos.left,
+							width : $sizeImg
+						}).appendTo("body");
+						
+						//购物车
+						var $pagecartbar = $("#page-cartbar");
+						var $carpos = $pagecartbar.offset(); 	//位置
+						var $carwidth = $pagecartbar.width();	//宽
+						var $carheight = $pagecartbar.height();	//高
+						var $shuliang = $("#shuliang");			//头部购物车   显示数量
+						var $headshoplist =$("#head_shoplist");	//头部购物车
+						var $getTitle = $(".getTitle").html(); 	//获取商品的标题
+						var $getMoney = $(".aa").html();		//获取商品的价格
+						
+						//改变头部购物车显示的数量
+						$shuliang.html(sum);
+						
+						//移动
+						$copyImg.animate({height:0,width:0,top:$carpos.top + $carheight/2,left:$carpos.left + $carwidth/2},function(){
+							$copyImg.remove();
+							//先清空购物车再添加
+							$headshoplist.html("");
+							
+							var $div = $("<div/>").addClass("goods").html("<img src="+$imgurl+" width='100px' /><p class='delect'></p>");
+							$("<div/>").addClass("goostitle").html("<h3>"+$getTitle+"</h3><span>"+$getMoney+"</span><b class='numX'>&times;"+sum+"</b>").appendTo($div);
+							$div.appendTo($headshoplist);
+							
+							
+							//把商品存入cookie
+							//过期时间为当前时间后两天
+							var d = new Date();
+							d.setDate(d.getDate()+2);
+							var goodsList = {"title":$getTitle,"imgurl":$imgurl,"price":$getMoney,"num":num};
+							//存入数组
+							shopcar_list.push(goodsList);
+							//序列化
+							var serialize = JSON.stringify(shopcar_list);
+							setCookie("goods",serialize,d,"/")
+						});
+						
+						
+						//点击头部购物车删除按钮时
+						$headshoplist.on("click",".delect",function(){
+							$(this).parent().remove(); 	//删除本商品
+							sum = 0;
+							$shuliang.html(sum);		//更新页面数量
+						})
+					});
+				}
+			});
+
+			//经过li的小图时 换 放大镜小图的图片
+			$("#picIdxBox").on("mouseenter", "li", function() {
+				var idx = $(this).index();
+				$(this).addClass("pic_on");  //边框高亮
+				$(this).siblings("li").removeClass("pic_on");
+				$("#picbox").remove();
+				$("<div/>").addClass("fdj").attr({
+					"id": "picbox"
+				}).html("<img src=../img/bag_big" + (idx + 1) + ".jpg  data-big =../img/zoom" + (idx + 1) + ".jpg />").appendTo(".part-1");
+			
+				//放大镜插件
+				$(".fdj").xzoom();
+			});
+			
+			
+			
+		</script>
+		<!--底部-->
+		<div id="_foot"></div>
+		<script>
+			$("#_foot").load("foot.html");
+		</script>
+	</body>
+
+</html>

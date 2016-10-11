@@ -1,0 +1,55 @@
+@charset "utf-8";
+.content{width: 1200px;margin: 25px auto 10px;}
+.con-title{color: #4e7fc2;margin-left: 10px;cursor: pointer;}
+.index{margin-right: 10px;}
+
+/*左边*/
+.content-left{float: left;}
+/*手风琴菜单*/
+.accordion{width: 226px;overflow: hidden;border: solid #e4e4e4 1px;box-shadow:0 0 1px 1px #e4e4e4 ; margin:20px 0 0 0 ;}
+.menu1{width: 226px;background: url(../img/h3bg.jpg) repeat-x left top;}
+.menu1 span{display: inline-block;line-height: 32px;margin-right: 10px;}
+.menu1 span img{margin: 10px 5px 0 20px;}
+.menu2{display: none;}
+.open{color: black; font-weight: 900;}
+.menu2 li{line-height: 30px;padding-left: 50px;}
+.menu2 li span{cursor: pointer;}
+.menu2 li span:hover{color: red;}
+
+/*一周销量排行榜*/
+.ranking-list{width: 224px;overflow: hidden; padding: 1px;border: solid #e4e4e4 1px;box-shadow:0 0 1px 1px #e4e4e4 ; margin:20px 0 0 0 ;text-align: center;}
+.rankbox{border-bottom:dotted #e4e4e4 1px ;}
+.ranking-list h3{line-height: 32px;text-align: center;color: black;background: url(../img/p2lbg.jpg) repeat-x left top;border-bottom: solid #e4e4e4 1px;}
+.ranking-list p{text-overflow: ellipsis;white-space: nowrap;overflow: hidden; width: 200px; margin-left: 12px;line-height: 30px;}
+.price{color: red;font-weight: 900;}
+
+/*浏览过该类商品的顾客还购买了*/
+.also-buy{width: 224px;overflow: hidden; padding: 1px;border: solid #e4e4e4 1px;box-shadow:0 0 1px 1px #e4e4e4 ; margin:20px 0 0 0 ;text-align: center;}
+.alsobox{border-bottom:dotted #e4e4e4 1px ;}
+.also-buy h3{line-height: 32px;text-align: center;color: black;background: url(../img/p2lbg.jpg) repeat-x left top;border-bottom: solid #e4e4e4 1px;}
+.alsobox div{display: inline-block; width:130px;text-align: center;}
+.alsobox img{margin: 20px 0px;width: 82px;}
+.alsobox p{overflow: hidden; width:120px;height: 40px;line-height: 20px;}
+.alsotitle {margin-top: 30px;margin-bottom: 5px;}
+
+/*右边*/
+.content-right{float: left;margin: 10px 0 0 10px;width: 934px;}
+.dl_nav {padding: 18px 13px 10px;border: solid #f4f4f4 2px;min-height: 100px;}
+.content-right dl{padding: 7px 12px; border-bottom: dotted #ccc 1px;overflow: hidden;margin-top:10px ;}
+.content-right dt{color: black;float: left;margin: 0  27px 0 30px;}
+.content-right dd{float: left;height: 26px;min-width:46px;text-align: center;line-height: 22px;margin: -5px 30px 10px 0;color:#0066cc;cursor: pointer;}
+.content-right .dd_on{background: url(../img/pinbg.jpg) no-repeat center bottom;color: white;}
+.dd_list{float: left;overflow: hidden;width: 700px;}
+.dd_brand{width: 750px; margin-left: 156px;overflow: hidden;}
+
+.cont-list{height: 35px;background:url(../img/filbg.jpg) repeat-x left top;margin-top: 10px;border:solid #eeeeee 1px; border-top: solid #15ade0 2px;}
+.cont-head{padding-left: 35px;line-height: 35px;}
+.cont-list span{ padding: 4px 12px;background: #fc1c5a;color: white;margin: 0 5px;font-weight: 600;cursor: pointer;}
+
+.c-list{height: 303px;width: 200px;padding: 15px;float: left;margin-top: 10px;position: relative;margin-bottom: 10px;}
+
+.c-price{margin-top: 20px;color: red;font-weight:600;font-size: 14px;}
+.c-price b{font-size:10px;font-weight: 100;margin-left: 5px;}
+.c-price a{text-align: center;background: #fc1c5a;color: white;padding: 6px 8px;margin-top: 10px;display: block;cursor: pointer;position: absolute;bottom:15px;left: 7px;width: 200px;}
+.cont-btn{ text-align: center;overflow: hidden;height: 40px;}
+.cont-btn a{padding: 5px 10px; background: #CCC; display: inline-block;margin: 0 10px;color: white;}

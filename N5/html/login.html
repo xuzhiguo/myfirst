@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>登录与注册</title>
+		<link rel="stylesheet" href="../css/reset.css" />
+		<link rel="stylesheet" href="../css/common.css" />
+		<link rel="stylesheet" href="../css/login.css" />
+		
+		<script type="text/javascript" src="../js/jquery-1.12.0.js" ></script>
+		<script type="text/javascript" src="../js/cookie.js" ></script>
+		<script type="text/javascript" src="../js/common.js" ></script>
+	</head>
+	<body>
+		<!--头部-->
+		<div class="_head"></div>
+		
+		<div id="_body"></div>
+		
+		<!--底部-->
+		<div class="_foot"></div>
+		<script>
+			$("._head").load("head.html",function(){
+				getHeadname();
+			});
+			$("._foot").load("foot.html");
+			var $_body =	$("#_body")
+			$_body.load("register.html",function(){
+				//获取cookie
+				var getname = getCookie("username");
+				var getpwd = getCookie("password");
+				//cookie中存在 则保存在登录页面的输入框中
+				if(getpwd){
+					$("#username").val(getname);
+					$("#password").val(getpwd);
+				}
+			});
+			
+			//注册页面
+			//验证全部正确的数组
+			var testing =[];
+			testing.length = $(".register input").length;
+			
+			//验证用户名
+			var val1;//用户名输入框的值
+			$_body.on("focus","#userId",function(){
+				//获得焦点 出现提示
+				$(".p1").html("3~30位,由汉字、字母、数字及下划线组成").show();
+				$("#b1").html("");
+			}).on("blur","#userId",function(){
+				//检测合法
+				val1 = $("#userId").val()
+				if(/^[\u4e00-\u9fff\w]{2,30}$/.test(val1)){
+					$("#b1").html("<img src='../img/right.png' />");
+					testing[0] = true;
+				}else{
+					testing[0] = false;
+					$(".p1").html("<span style='color: red;'>用户名的长度应为3～30个字符之间(汉字占两个字符)！</span>").show();
+				}
+			});
+			//验证密码
+			var val2;//密码输入框的值
+			$_body.on("focus","#pwd",function(){
+				//获得焦点 出现提示
+				$(".p2").html("6~16位,建议使用字母、数字、特殊字符组合").show();
+				$("#b2").html("");
+			}).on("blur","#pwd",function(){
+				val2 = $("#pwd").val();
+				if(/^[a-z0-9_-]{6,16}$/.test(val2)){
+					testing[1] = true;
+					$("#b2").html("<img src='../img/right.png' />");
+				}else{
+					testing[1] = false;
+					$(".p2").html("<span style='color: red;'>密码的长度应该为6～16个字符之间！</span>").show();
+				}
+			});
+			//验证重复密码
+			$_body.on("focus","#re-pwd",function(){
+				$("#b3").html("");
+				$(".p3").html("");
+			}).on("blur","#re-pwd",function(){
+				var val3 = $("#re-pwd").val();
+				if(val3 && val2 && val3 == val2){
+					testing[2] = true;
+					$("#b3").html("<img src='../img/right.png' />");
+				}else{
+					testing[2] = false;
+					$(".p3").html("<span style='color: red;'>两次输入的密码不一致，请重新输入！</span>").show();
+				}
+			});
+			//验证邮箱
+			var val4; //邮箱输入框的值
+			$_body.on("focus","#mailbox",function(){
+				$(".p4").html("").show();
+				$("#b4").html("");
+			}).on("blur","#mailbox",function(){
+				val4 = $("#mailbox").val();
+				if(/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/.test(val4)){
+					testing[3] = true;
+					$("#b4").html("<img src='../img/right.png' />");
+				}else{
+					testing[3] = false;
+					$(".p4").html("<span style='color: red;'>请您输入邮件地址！</span>").show();
+				}
+			});
+			
+			//点击换验证码
+			var imgsrc =[	{imgurl: "../img/VerifyCode1.jpg",code:1553},
+							{imgurl: "../img/VerifyCode2.jpg",code:6137},
+							{imgurl: "../img/VerifyCode3.jpg",code:5305},
+							{imgurl: "../img/VerifyCode4.jpg",code:6355},
+							{imgurl: "../img/VerifyCode5.jpg",code:4729},
+							{imgurl: "../img/VerifyCode6.jpg",code:4412},
+							{imgurl: "../img/VerifyCode7.jpg",code:2572},
+							{imgurl: "../img/VerifyCode8.jpg",code:9288},
+							{imgurl: "../img/VerifyCode9.jpg",code:1698}
+						];
+						
+			//默认验证码
+			var $savecode = 0;
+			
+			$_body.on("click","#code-img1",function(){
+				var randimg = parseInt(Math.random()*9);
+				$savecode = randimg;
+				$("#code-img1").find("img").attr("src",imgsrc[randimg].imgurl);
+			});
+			
+			//验证验证码
+			$_body.on("focus","#verification-code",function(){
+				$("#b5").html("");
+			}).on("blur","#verification-code",function(){
+				var val5 = $("#verification-code").val();
+				if(val5 == imgsrc[$savecode].code ){
+					testing[4] = true;
+					$("#b5").html("<img src='../img/right.png' />");
+				}else{
+					//非空的时候才判断
+					if(val5){
+						testing[4] = false;
+						$("#b5").html("<span style='color: red;'>验证码错误!</span>");
+					}
+				}
+			});
+			
+			//验证全部正确才能注册
+			$_body.on("click","#register",function(){
+				//验证是否勾选
+				if($("#agree").get(0).checked){
+					testing[5] = true;
+				}else{
+					testing[5] = false;
+				}
+				
+				if(testing[0]&&testing[1]&&testing[2]&&testing[3]&&testing[4]&&testing[5]){
+					//过期时间为当前时间后两天
+					var d = new Date();
+					d.setDate(d.getDate()+2);
+					setCookie("username",val1,d,"/"); //cookie存用户名
+					setCookie("password",val2,d,"/"); //cookie存密码
+					setCookie("mailbox",val4,d,"/");	//cookie存邮箱
+					//删除当前页面   再加载成功页面
+					$("#_body").remove("._content");
+					$("#_body").load("sussess.html",function(){
+						//注册成功时 成功页面填写用户名 邮箱
+						$("#sussessName").html(val1);
+						$("#sussessMailbox").html(val4);
+					});	
+				}else{
+					for(var i=0;i<testing.length;i++){
+						if(!testing[i]){
+							$(".register b:eq("+i+")").html("<span style='color: red;'>请正确填写!</span>")
+						}
+					}
+				}
+			});
+			
+			
+			
+			
+		</script>
+	</body>
+</html>
