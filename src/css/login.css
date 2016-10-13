@@ -1,0 +1,25 @@
+@charset "utf-8";
+
+._content{width:977px;margin: 10px auto;border: solid #c6e6f3 1px;overflow: hidden;padding-bottom: 20px;}
+._content .login{width:486px;margin-top: 10px;float: left;}
+._content .login h3{margin: 40px auto;width: 440px;height: 43px; background: url(../img/reg-bg.png) no-repeat -162px -152px;}
+._content .login input,._content .register input{margin-top: 30px;}
+._content .login p{margin: 10px 0;}
+._content .register{ width:486px;;margin-top: 10px;float: left; background: url(../img/reg-bg.png) no-repeat -928px -70px;min-height: 440px;position: relative;}
+._content .register h3{margin: 40px auto;width: 440px;height: 43px; background: url(../img/reg-bg.png) no-repeat -162px -195px;}
+._content button{margin: 10px 10px 10px 100px;padding: 0;border: none;background: white;}
+._content input{height: 20px; border: solid #7f9db9 1px;}
+.logbox,.regbox{padding-left: 66px; }
+.register p {position: absolute;left: 140px; display: none;}
+.register b{padding-left:10px ;}
+.register #b1 img{margin-top:0 ;}
+.register b img{margin-top:30px ;}
+.p1{top:150px};
+#agree{height: 20px;margin-right: 5px;}
+#code-img,#code-img1{margin-top: 30px;display: inline-block;}
+
+/*成功*/
+.success{margin-top:10px ;text-align: center;}
+.success span{color: #00cafe;margin: 5px;}
+.success h3{margin: 20px auto; height:55px;width: 60%; background: url(../img/reg-bg.png) no-repeat -160px -240px;}
+.success a{margin-right:20px ;color: #0080ff;cursor: pointer;}
