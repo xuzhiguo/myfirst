@@ -93,7 +93,7 @@ $(function() {
 		minutes = 0,
 		seconds = 0;
 	//设定过期时间
-	var d2 = new Date("2016-10-16");
+	var d2 = new Date("2016-10-14");
 
 	var timer = setInterval(function() {
 		//现在的时间对象
@@ -111,5 +111,9 @@ $(function() {
 		$(".second").html(seconds);
 
 	}, 100);
+	
+	
+	//获取头部
+	getHeadname();
 
 });

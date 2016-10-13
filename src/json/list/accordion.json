@@ -775,6 +775,7 @@
 	
 	{
 		"Id" : "cont_list",
+		"product_code": "g021",
 		"page" : "2",
 		"imgurl" : "../img/list21.jpg",
 		"title" : "Clarins 娇韵诗调和身体护理油(去妊娠纹5126) 30ml",
@@ -784,6 +785,7 @@
 	
 	{
 		"Id" : "cont_list",
+		"product_code": "g022",
 		"page" : "2",
 		"imgurl" : "../img/list22.jpg",
 		"title" : "Clarins 娇韵诗纤妍紧致精华乳-瘦脸露/纤颜 v脸精华 (小样，3个装)特",
@@ -793,6 +795,7 @@
 	
 	{
 		"Id" : "cont_list",
+		"product_code": "g023",
 		"page" : "2",
 		"imgurl" : "../img/list23.jpg",
 		"title" : "Clinique 倩碧水嫩保湿润肤霜(水磁场面霜小样6LKK-40)3个装 本周特",
@@ -802,6 +805,7 @@
 	
 	{
 		"Id" : "cont_list",
+		"product_code": "g024",
 		"page" : "2",
 		"imgurl" : "../img/list24.jpg",
 		"title" : "Estee Lauder 雅诗兰黛清澈净白修颜霜SPF50(小样，2支装) 特价！ 5ml*2",
@@ -811,6 +815,7 @@
 	
 	{
 		"Id" : "cont_list",
+		"product_code": "g025",
 		"page" : "2",
 		"imgurl" : "../img/list25.jpg",
 		"title" : "Biotherm 碧欧泉温泉至臻精华露(小样,3个装)特价！ 5ml*3",
@@ -820,6 +825,7 @@
 	
 	{
 		"Id" : "cont_list",
+		"product_code": "g026",
 		"page" : "2",
 		"imgurl" : "../img/list26.jpg",
 		"title" : "Lancome 兰蔻柔皙轻透防晒露 「轻呼吸」防护露 10ml*2",
@@ -829,6 +835,7 @@
 	
 	{
 		"Id" : "cont_list",
+		"product_code": "g027",
 		"page" : "2",
 		"imgurl" : "../img/list27.jpg",
 		"title" : "Clinique 倩碧液体洁面皂-温和型(洗面奶中样6L79) 30ml",
@@ -838,6 +845,7 @@
 	
 	{
 		"Id" : "cont_list",
+		"product_code": "g028",
 		"page" : "2",
 		"imgurl" : "../img/list28.jpg",
 		"title" : "PAYOT 柏姿便携小套(101800) 特价! ",
@@ -847,6 +855,7 @@
 	
 	{
 		"Id" : "cont_list",
+		"product_code": "g029",
 		"page" : "2",
 		"imgurl" : "../img/list29.jpg",
 		"title" : "Lancome 兰蔻根源补养美容液(根源能量液，中样) 50ml",
@@ -856,6 +865,7 @@
 	
 	{
 		"Id" : "cont_list",
+		"product_code": "g030",
 		"page" : "2",
 		"imgurl" : "../img/list30.jpg",
 		"title" : "Clarins 娇韵诗纤妍紧致慕丝面膜(中样) 15ml",
@@ -865,6 +875,7 @@
 	
 	{
 		"Id" : "cont_list",
+		"product_code": "g031",
 		"page" : "2",
 		"imgurl" : "../img/list31.jpg",
 		"title" : "Clarins 娇韵诗明眸紧致精华露/眼霜 本周特价！ 8ml",
@@ -874,6 +885,7 @@
 	
 	{
 		"Id" : "cont_list",
+		"product_code": "g032",
 		"page" : "2",
 		"imgurl" : "../img/list32.jpg",
 		"title" : "Biotherm 碧欧泉活泉爽肤洁面乳(洗面奶小样) 50ml",
@@ -883,6 +895,7 @@
 	
 	{
 		"Id" : "cont_list",
+		"product_code": "g033",
 		"page" : "2",
 		"imgurl" : "../img/list33.jpg",
 		"title" : "Estee Lauder 雅诗兰黛特润修护肌透精华露(小棕瓶，小样，3个装) 7ml*3",
@@ -892,6 +905,7 @@
 	
 	{
 		"Id" : "cont_list",
+		"product_code": "g034",
 		"page" : "2",
 		"imgurl" : "../img/list34.jpg",
 		"title" : "Shiseido 资生堂新透白美肌亮润日用防护乳SPF15 特价！ 15ml",
@@ -901,6 +915,7 @@
 	
 	{
 		"Id" : "cont_list",
+		"product_code": "g035",
 		"page" : "2",
 		"imgurl" : "../img/list35.jpg",
 		"title" : "Estee Lauder 雅诗兰黛白金级奢宠紧颜乳霜 7ml",
@@ -910,6 +925,7 @@
 	
 	{
 		"Id" : "cont_list",
+		"product_code": "g036",
 		"page" : "2",
 		"imgurl" : "../img/list36.jpg",
 		"title" : "Kiehl’s 科颜氏(契尔氏)集焕白净润保湿乳液(小样)3个装 5ml*3",
@@ -919,6 +935,7 @@
 	
 	{
 		"Id" : "cont_list",
+		"product_code": "g037",
 		"page" : "2",
 		"imgurl" : "../img/list37.jpg",
 		"title" : "Kiehl’s 科颜氏(契尔氏)金盏花植物爽肤水 本周特价! 40ml",
@@ -928,6 +945,7 @@
 	
 	{
 		"Id" : "cont_list",
+		"product_code": "g038",
 		"page" : "2",
 		"imgurl" : "../img/list38.jpg",
 		"title" : "Lancome 兰蔻珍爱爱恋香水 特价! 5ml",
@@ -937,6 +955,7 @@
 	
 	{
 		"Id" : "cont_list",
+		"product_code": "g039",
 		"page" : "2",
 		"imgurl" : "../img/list39.jpg",
 		"title" : "Estee Lauder 雅诗兰黛净莹柔肤洁面乳/洗面奶 30ml",
@@ -946,6 +965,7 @@
 	
 	{
 		"Id" : "cont_list",
+		"product_code": "g040",
 		"page" : "2",
 		"imgurl" : "../img/list40.jpg",
 		"title" : "SK-II/SK2/skii 活肤紧颜双面膜(3片，无外盒) 1片*3",
@@ -955,6 +975,7 @@
 	
 	{
 		"Id" : "cont_list",
+		"product_code": "g041",
 		"page" : "3",
 		"imgurl" : "../img/list25.jpg",
 		"title" : "Biotherm 碧欧泉温泉至臻精华露(小样,3个装)特价！ 5ml*3",
@@ -964,6 +985,7 @@
 	
 	{
 		"Id" : "cont_list",
+		"product_code": "g042",
 		"page" : "3",
 		"imgurl" : "../img/list26.jpg",
 		"title" : "Lancome 兰蔻柔皙轻透防晒露 「轻呼吸」防护露 10ml*2",
@@ -973,6 +995,7 @@
 	
 	{
 		"Id" : "cont_list",
+		"product_code": "g043",
 		"page" : "3",
 		"imgurl" : "../img/list27.jpg",
 		"title" : "Clinique 倩碧液体洁面皂-温和型(洗面奶中样6L79) 30ml",
@@ -982,6 +1005,7 @@
 	
 	{
 		"Id" : "cont_list",
+		"product_code": "g044",
 		"page" : "3",
 		"imgurl" : "../img/list5.jpg",
 		"title" : "Estee Lauder雅诗兰黛奇迹丰盈抗皱精华露(W1A7)",
@@ -991,6 +1015,7 @@
 	
 	{
 		"Id" : "cont_list",
+		"product_code": "g045",
 		"page" : "3",
 		"imgurl" : "../img/list6.jpg",
 		"title" : "Lancome 兰蔻精华肌底眼部凝霜(小黑瓶眼膜霜 小样) 5ml",
@@ -1000,6 +1025,7 @@
 	
 	{
 		"Id" : "cont_list",
+		"product_code": "g046",
 		"page" : "3",
 		"imgurl" : "../img/list7.jpg",
 		"title" : "Clinique 倩碧水嫩保湿润肤霜(水磁场面霜6E67) 15ml",
@@ -1009,6 +1035,7 @@
 	
 	{
 		"Id" : "cont_list",
+		"product_code": "g047",
 		"page" : "3",
 		"imgurl" : "../img/list8.jpg",
 		"title" : "Clinique 倩碧水嫩保湿润肤霜(水磁场面霜6E67) 15ml",
@@ -1018,6 +1045,7 @@
 	
 	{
 		"Id" : "cont_list",
+		"product_code": "g048",
 		"page" : "3",
 		"imgurl" : "../img/list9.jpg",
 		"title" : "BVLGARI 宝格丽 MAN 当代男士香水",

@@ -205,6 +205,8 @@
 							//把当前商品资料存入数组
 							var thisdata ={title:$thisTitle,imgurl:$thisSrc,price:$thisPrice,num:num3,product_code:$thisid}
 							shopcar_list.push(thisdata);
+							
+						}	
 							//先删除之前的cookie
 							var dd = new Date();
 							setCookie("goods","",d,"/");
@@ -216,7 +218,7 @@
 							//序列化
 							var serialize = JSON.stringify(shopcar_list);
 							setCookie("goods",serialize,d,"/");
-						}
+						
 						
 						$headshoplist.html("");
 						//生成资料

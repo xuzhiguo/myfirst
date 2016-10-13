@@ -47,39 +47,36 @@ function getHeadname(){
 		$("#shuliang").html(num1);
 	}
 	
-	var numXXX = num1;
 	//点击删除按钮
 	$headshoplist.on("click",".delect",function(){
+		var numXXX = 0;
+		for(var i=0;i<shopcar_list.length;i++){
+			//原来数组中总的数量
+			numXXX += shopcar_list[i].num;
+		}
+		//更新显示数量
+		$("#shuliang").html(numXXX);
+		
 		var numXX = $(this).parent().find(".numX").html();//找到当前商品的数量
 		$(this).parent().remove(); 	//删除本商品
 		//减去数量再更新
 		numXXX -= parseInt(numXX.charAt(1));
 		$("#shuliang").html(numXXX);	//更新页面数量
 		
-		var isTrue = false;
+		//var isTrue = false;
 		//获取当前商品的ID
 		var thisId = $(this).parent().attr("id");
 		for(var i=0;i<shopcar_list.length;i++){
 			if(thisId == shopcar_list[i].product_code)	{
 				//删除数组中 本商品的记录
 				shopcar_list.splice(i-1,1);
-				isTrue = true;
+				//isTrue = true;
 			}
 		}
 		//如果有删除  更新cookie
-		if(isTrue){
-			//先删除之前的cookie
-			var dd = new Date();
-			setCookie("goods","",d,"/");
-			
-			//设置cookie
-			//过期时间为当前时间后两天
-			var d = new Date();
-			d.setDate(d.getDate()+2);
-			//序列化
-			var serialize = JSON.stringify(shopcar_list);
-			setCookie("goods",serialize,d,"/");
-		}
+			updataCookie();
+//		if(isTrue){
+//		}
 		
 		if(numXXX==0){
 			//为0时显示购物车空空如也
@@ -88,3 +85,17 @@ function getHeadname(){
 	});
 }
 
+function updataCookie(){
+	//先删除之前的cookie
+	var dd = new Date();
+	setCookie("goods","",d,"/");
+	
+	//设置cookie
+	//过期时间为当前时间后两天
+	var d = new Date();
+	d.setDate(d.getDate()+2);
+	//序列化
+	var serialize = JSON.stringify(shopcar_list);
+	setCookie("goods",serialize,d,"/");
+	
+}
