@@ -1,0 +1,39 @@
+[
+	{
+		"title" : "Estee lauder 雅诗兰黛土豪金镂空时尚拎包(200210) ",
+		"bigIMG" : "../img/bag_big1.jpg",
+		"data_big" : "../img/zoom1.jpg",
+		"itemcode" : "31817",
+		"no5" : "￥30.00",
+		"marketprice" : " ￥80.00",
+		"discount" : "3.8折",
+		"brand1" : "Estee Lauder 雅诗兰黛",
+		"brand2" : "其他护肤系列",
+		"classify1" : "美容工具",
+		"classify2" : "家居用品",
+		"classify3" : "购物袋/包" ,
+		"smallIMG" :[
+						{
+							"url" : "../img/bag_small1.jpg",
+							"pic_on" : "pic_on"
+						},
+						
+						{
+							"url" : "../img/bag_small2.jpg"
+						},
+						
+						{
+							"url" : "../img/bag_small3.jpg"
+						},
+						
+						{
+							"url" : "../img/bag_small4.jpg"
+						},
+						
+						{
+							"url" : "../img/bag_small5.jpg"
+						}
+					]
+	}
+	
+]

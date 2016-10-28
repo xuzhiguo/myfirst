@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>列表页</title>
+		<link rel="stylesheet" href="../css/reset.css" />
+		<link rel="stylesheet" href="../css/common.css" />
+		<link rel="stylesheet" href="../css/list.css" />
+		<script type="text/javascript" src="../js/jquery-1.12.0.js" ></script>
+		<script type="text/javascript" src="../js/cookie.js" ></script>
+		<script type="text/javascript" src="../js/common.js" ></script>
+	</head>
+	<body>
+		<!--头部-->
+		<div class="_head"></div>
+		
+		<!--内容-->
+		<div class="content">
+			<span class="index">首页</span> &gt; <span class="con-title">超值小样</span>
+			<div class="clear"></div>
+			
+			<!--左边-->
+			<div class="content-left">
+				<!--手风琴菜单-->
+				<div class="accordion">
+					<ul id="menu">
+						<!--<li class="menu1">
+							<span class="open"><img src="../img/add.jpg"/>手部护理</span><span>(20000)</span>
+							<ul class="menu2">
+								<li><span>美妆</span>(20002)</li>
+								<li><span>美妆</span>(20002)</li>
+							</ul>
+						</li>-->
+					</ul>
+				</div>
+				
+				<!--一周销量排行榜-->
+				<div class="ranking-list" id="ranking-list">
+					<h3>一周销量排行榜</h3>
+				</div>
+				
+				<!--浏览过该类商品的顾客还购买了-->
+				<div class="also-buy" id="alsobuy">
+					<h3>浏览过该类商品的顾客还购买了</h3>
+				</div>
+			</div>
+		</div>
+		
+		<!--右边-->
+		<div class="content-right">
+			<!--导航-->
+			<div class="dl_nav" id="dl_nav"></div>
+			<!--列表-->
+			<div class="cont-list">
+				<div class="cont-head">
+					排序: <span>销量</span> <span>价格</span> <span>好评度</span> <span>上架时间</span>
+				</div>
+				<div class="cont-page" id="cont-page">
+					<!--列表生成在此-->
+				</div>
+				<!--分页加载-->
+				<div class="clear"></div>
+				<div class="cont-btn">
+					<a href="#" style="background: #00CAFE;"> 1 </a> <a href="#"> 2 </a> <a href="#"> 3 </a>
+				</div>
+			</div>
+		</div>
+		<script>
+			var $menu = $("#menu");
+			var $rankinglist = $("#ranking-list");
+			var $alsobuy = $("#alsobuy");
+			var $dl_nav = $("#dl_nav");
+			var $cont_page = $(".cont-page");
+			$.ajax({
+				url:"../json/list/accordion.json",
+				success : function(res){
+					$.each(res, function(idx,ele) {
+						//生成手风琴菜单
+						if(ele.Id == "menu"){
+							var $li = $("<li/>").addClass("menu1").html("<span class='open'><img src='../img/add.jpg'/>"+ele.title+"</span><span>("+ele.num+")</span>");
+							var $ul = $("<ul/>").addClass("menu2");
+							$.each(ele.list, function(idx,ele) {
+								$("<li/>").html("<span>"+ele.title+"</span>("+ele.num+")").appendTo($ul);
+							});
+							$li.append($ul).appendTo($menu);
+						}
+						
+						//生成排行榜
+						if(ele.Id == "rankbox"){
+							$("<div/>").addClass("rankbox").html("<img src="+ele.imgurl+"/><p>"+ele.title+"</p><p class='price'>￥"+ele.price+"</p>").appendTo($rankinglist);
+							
+						}
+						
+						//生成还购买了
+						if(ele.Id == "alsobuy"){
+							$("<div/>").addClass("alsobox").html("<img src="+ele.imgurl+"/><div><p class='alsotitle'>"+ele.title+"</p><p class='price'>"+ele.price+"</p></div>").appendTo($alsobuy);
+						}
+						
+						//生成导航
+						if(ele.Id == "dl_nav"){
+							var $dl = $("<dl/>").html("<dt>"+ele.title+":</dt>");
+							
+							if(ele.dataId){
+								var $dd_list = $("<div/>").addClass(".dd_list").attr("id","dataId");
+							}else{
+								var $dd_list = $("<div/>").addClass(".dd_list");
+							}
+							
+							
+							$.each(ele.ddnav, function(idx,ele) {
+								if(ele.default == "true"){
+									var $dd1 = $("<dd/>").addClass("dd_on").html(ele.cont).appendTo($dd_list);
+								}else{
+									//添加 自定义属性
+									var $dd1 = $("<dd/>").attr("idstr",ele.cont).html(ele.cont).appendTo($dd_list);
+								}
+							});
+							$dl.append($dd_list).appendTo($dl_nav);
+						}
+						
+						//生成物品列表
+						if(ele.Id == "cont_list" && ele.page == "1"){
+							$("<div/>").attr("id",ele.product_code).addClass("c-list").html("<img src="+ele.imgurl+"/><i class='title'>"+ele.title+"</i><div class='c-price'><p><i>￥"+ele.price+"</i><b>("+ele.redate+"折)</b></p><a class='pushCar'>加入购物车</a></div>").appendTo($cont_page);
+							
+						}
+						
+					});
+					
+					//点击导航
+					$dl_nav.on("click","dd",function(){
+						$(this).siblings().removeClass("dd_on");
+						$(this).addClass("dd_on");
+						
+						//获取当前dd的自定义属性
+						var idstr = $(this).attr("idstr");
+						
+						var $dataId = $("#dataId");
+						//先清空 再添加
+						$dataId.find(".dd_brand").remove();
+						
+						$.each(res, function(idx,ele) {
+							if(ele.Id == idstr){
+								var $div1 = $("<div/>").addClass("dd_brand");
+								$.each(ele.brand, function(idx,ele) {
+									$("<dd/>").html(ele.brand).appendTo($div1);
+									$div1.appendTo($dataId);
+								});
+							}
+						});	
+					});
+					
+					//点击打开手风琴菜单
+					$menu.on("click",".open",function(){
+						$(this).parent().find(".menu2").toggle();
+					});
+					
+					//鼠标进过物品列表背景变色
+					$cont_page.on("mouseenter",".c-list",function(){
+						$(this).css("background","rgb(244,244,244)");
+					}).on("mouseleave",".c-list",function(){
+						$(this).css("background","white");
+					});
+					
+					//点击加入购物车
+					$cont_page.on("click",".pushCar",function(){
+						//找到当前的商品图片路径
+						var $thisSrc = $(this).parent().parent().find("img").attr("src");
+						//获取当前商品图片的位置
+						var $thisPos = $(this).parent().parent().find("img").offset();
+						//获取当前商品图片的大小
+						var $thisSize = $(this).parent().parent().find("img").width();
+						//获取当前商品的Id
+						var $thisid = $(this).parent().parent().attr("id");
+						//获取当前商品的标题
+						var $thisTitle = $(this).parent().parent().find(".title").html();
+						//获取当前商品的价格
+						var $thisPrice = $(this).prev("p").children("i").html();
+						var $headshoplist =$("#head_shoplist");	//头部购物车
+						var shuliang = $("#shuliang");//显示数量
+						//声明一个初始数量
+						var num3 = 1;
+						var num2 = 1 ;
+						for(var i=0;i<shopcar_list.length;i++){
+							//原来数组中总的数量
+							num2 += shopcar_list[i].num;
+						}
+						//更新显示数量
+						$("#shuliang").html(num2);
+						
+						var isTrue = true;
+						//遍历公共数组看是否已存在本商品
+						for(var j=0;j<shopcar_list.length;j++){
+							if(shopcar_list[j].product_code == $thisid){
+								//如果存在商品
+								shopcar_list[j].num += 1;
+								//删除本商品的详情(后面再添加)
+								$headshoplist.find("#"+$thisid).remove();
+								//如果存在则设置cookie
+								isTrue = false;
+								
+							}
+						}
+						//如果cookie不存在该商品则设置
+						if(isTrue){
+							//把当前商品资料存入数组
+							var thisdata ={title:$thisTitle,imgurl:$thisSrc,price:$thisPrice,num:num3,product_code:$thisid}
+							shopcar_list.push(thisdata);
+							
+						}	
+							//先删除之前的cookie
+							var dd = new Date();
+							setCookie("goods","",d,"/");
+							
+							//设置cookie
+							//过期时间为当前时间后两天
+							var d = new Date();
+							d.setDate(d.getDate()+2);
+							//序列化
+							var serialize = JSON.stringify(shopcar_list);
+							setCookie("goods",serialize,d,"/");
+						
+						
+						$headshoplist.html("");
+						//生成资料
+						for(var k =0;k<shopcar_list.length;k++){
+							var $div = $("<div/>").attr("id",shopcar_list[k].product_code).addClass("goods").html("<img src="+shopcar_list[k].imgurl+" width='100px' /><p class='delect'></p>");
+							$("<div/>").addClass("goostitle").html("<h3>"+shopcar_list[k].title+"</h3><span>"+shopcar_list[k].price+"</span><b class='numX'>&times;"+shopcar_list[k].num+"</b>").appendTo($div);
+							$div.appendTo($headshoplist);
+						}
+						//生成一张图片在当前位置  赋属性
+						var $copyThisImg = $("<img/>").attr("src",$thisSrc).css({
+							position:"absolute",
+							top : $thisPos.top,
+							left : $thisPos.left,
+							width : $thisSize
+						}).appendTo("body");
+						//获取头部购物车的位置  宽 高
+						var $headcar2 = $("#page-cartbar");
+						var $headpos = $headcar2.offset();
+						var $headhight =$headcar2.height();
+						var $headwidth =$headcar2.width();
+						//移动
+						$copyThisImg.animate({height:0,width:0,top:$headpos.top + $headhight/2,left:$headpos.left + $headwidth/2},function(){
+							//到达后移除该图片
+							$copyThisImg.remove();
+						});
+					});
+				}
+			});
+			
+			
+			//分页加载
+			$(".cont-btn").on("click","a",function(){
+				$(this).css("background","#00CAFE");
+				$(this).siblings("a").css("background","#CCCCCC");
+				//获取点击的页码
+				var pagestr = $(this).html();
+				//删除之前的
+				$cont_page.html("");
+				
+				$("html body").scrollTop(0);
+				$.ajax({
+					url:"../json/list/accordion.json",
+					success: function(res){
+						//生成物品列表
+						$.each(res, function(idx,ele) {
+							if(parseInt(ele.page)  == pagestr){
+								$("<div/>").attr("id",ele.product_code).addClass("c-list").html("<img src="+ele.imgurl+"/>"+ele.title+"<div class='c-price'><p>￥"+ele.price+"<b>("+ele.redate+"折)</b></p><a class='pushCar'>加入购物车</a></div>").appendTo($cont_page);
+							}
+						});
+					}
+				});
+			});
+		
+			
+		</script>
+		
+		<div class="clear"></div>
+		<!--底部-->
+		<div class="_foot"></div>
+		<script>
+			$("._head").load("head.html",function(){
+				getHeadname();
+			});
+			$("._foot").load("foot.html");
+		</script>
+	</body>
+</html>
